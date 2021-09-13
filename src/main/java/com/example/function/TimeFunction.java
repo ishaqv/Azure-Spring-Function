@@ -4,12 +4,13 @@ import com.microsoft.azure.functions.ExecutionContext;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.TimerTrigger;
 import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
+
 /**
  * This is the function class and must inherit org.springframework.cloud.function.adapter.azure.FunctionInvoker<I, O>
  */
 public class TimeFunction extends FunctionInvoker<String, String> {
     /**
-     *  Timer trigger function that runs on every 2 minutes and print the current time
+     * Timer trigger function that runs on every 2 minutes and print the current time
      */
     @FunctionName("time")
     public void run(

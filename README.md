@@ -4,7 +4,9 @@ This is a sample application to showcase how to incorporate the spring boot func
 Spring Cloud Function.
 
 ### Run the Function locally
+
 #### You must specify a value for `AzureWebJobsStorage` in your local.settings.json for all functions except Http Triggered functions
+
 - First you need to package your application into a Jar file
   `gradle azureFunctionsPackage`
 
@@ -20,7 +22,6 @@ GET request. For example, using cURL
 ### Running tests
 
 `gradle test`
-
 
 ### References
 

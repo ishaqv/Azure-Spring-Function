@@ -13,6 +13,7 @@ public class WelcomeFunction extends FunctionInvoker<String, String> {
 
     /**
      * HTTP triggered function that accepts a name parameter and responds with its capitalized value
+     *
      * @param request
      * @param context
      * @return

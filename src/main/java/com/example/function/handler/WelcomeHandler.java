@@ -3,7 +3,9 @@ package com.example.function.handler;
 import com.example.util.UpperCaseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.function.Function;
+
 import static java.lang.String.format;
 
 /**
