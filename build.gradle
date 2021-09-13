@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id "com.microsoft.azure.azurefunctions" version "1.7.0"
+}
+
+version = '1.0-SNAPSHOT'
+description = 'Azure Spring Function'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-function-adapter-azure:3.1.3'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+}
+
+azurefunctions {
+    appName = "spring-function"
+}
+
+test {
+    useJUnitPlatform()
+}
+
