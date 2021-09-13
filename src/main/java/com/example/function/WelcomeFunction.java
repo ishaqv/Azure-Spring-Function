@@ -11,6 +11,12 @@ import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
  */
 public class WelcomeFunction extends FunctionInvoker<String, String> {
 
+    /**
+     * HTTP triggered function that accepts a name parameter and responds with its capitalized value
+     * @param request
+     * @param context
+     * @return
+     */
     @FunctionName("welcome")
     public HttpResponseMessage run(
             @HttpTrigger(
@@ -18,7 +24,7 @@ public class WelcomeFunction extends FunctionInvoker<String, String> {
                     methods = HttpMethod.GET,
                     authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<String> request,
             ExecutionContext context) {
-        context.getLogger().info("Function starting to process request");
+        context.getLogger().info("Welcome function starting to process request");
         String name = request.getQueryParameters().getOrDefault("name", "x");
         return request
                 .createResponseBuilder(HttpStatus.OK)
