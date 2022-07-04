@@ -1,28 +1,37 @@
 package com.example.function.handler;
 
 import com.example.util.UpperCaseConverter;
+import com.microsoft.azure.functions.ExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
-import static java.lang.String.format;
-
 /**
- * This is the function binding class. The bean name must be same as the function name and the class must implement java.util.function.Function<T, R>
+ * This is the function binding class.
  */
 
-@Component("welcome")
-public class WelcomeHandler implements Function<String, String> {
+@Component
+public class WelcomeHandler {
+    private final UpperCaseConverter upperCaseConverter;
 
     @Autowired
-    UpperCaseConverter upperCaseConverter;
+    public WelcomeHandler(UpperCaseConverter upperCaseConverter) {
+        this.upperCaseConverter = upperCaseConverter;
+    }
+
 
     /**
      * This method will be automatically invoked and the function business logic goes here
      */
-    @Override
-    public String apply(String name) {
-        return format("Hello, Welcome  %s", upperCaseConverter.convert(name));
+    @Bean
+    public Function<Message<String>, String> welcome() {
+        return message -> {
+            ExecutionContext context = (ExecutionContext) message.getHeaders().get("executionContext");
+            context.getLogger().info("Function execution context can be accessed from here!");
+            return "Welcome Mr " + upperCaseConverter.convert(message.getPayload());
+        };
     }
 }
